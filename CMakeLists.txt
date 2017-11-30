@@ -4,7 +4,7 @@ project(DynamicRoutingProject)
 # Place targets into their own solution folders
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-file(GLOB_RECURSE HEADER_FILES src/*.h)
+file(GLOB_RECURSE HEADER_FILES src/*.h )
 file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
 file(GLOB CONFIG_FILES CMakeLists.txt README.md .gitignore)
 
