@@ -12,11 +12,12 @@ public:
 	Simulator() = default;
 	~Simulator() = default;
 
-	void run_simulator(int numberOfNodes);
+	void run_simulator();
+	void generate_routers();
+	void find_shortest_path(std::string sourceNode, std::string destinationNode);
 
 private:
 	Graph<SharedRouter> network_;
-
-	void add_router_to_graph(Router* router, AdjacencyList<SharedRouter> routerAdjacencyList);
+	std::map<std::string, SharedRouter> routers_;
 
 };

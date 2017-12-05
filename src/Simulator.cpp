@@ -2,18 +2,16 @@
 
 using namespace std;
 
-void Simulator::add_router_to_graph(Router* router, AdjacencyList<SharedRouter> routerAdjacencyList)
-{
-	network_.emplace(router->mac_address(), routerAdjacencyList);
-}
-
-
-void Simulator::run_simulator(int numberOfNodes)
+void Simulator::generate_routers()
 {
 	// Create the router
-	auto routerA = std::make_shared<Router>("A");
-	auto routerB = std::make_shared<Router>("B");
-	auto routerC = std::make_shared<Router>("C");
+	auto routerA = make_shared<Router>("A");
+	auto routerB = make_shared<Router>("B");
+	auto routerC = make_shared<Router>("C");
+
+	routers_.emplace(routerA->mac_address(), routerA);
+	routers_.emplace(routerB->mac_address(), routerB);
+	routers_.emplace(routerB->mac_address(), routerC);
 
 	// Create some neighbors
 	AdjacencyList<SharedRouter> routerANeighbors;
@@ -30,7 +28,19 @@ void Simulator::run_simulator(int numberOfNodes)
 	routerCNeighbors.push_back(make_pair(routerB, 7));
 
 	// Add the routers to the network graph
-	add_router_to_graph(routerA.get(), routerANeighbors);
-	add_router_to_graph(routerB.get(), routerBNeighbors);
-	add_router_to_graph(routerC.get(), routerCNeighbors);
+	network_.emplace(routerA->mac_address(), routerANeighbors);
+	network_.emplace(routerB->mac_address(), routerBNeighbors);
+	network_.emplace(routerC->mac_address(), routerCNeighbors);
+
+}
+
+
+void Simulator::run_simulator()
+{
+	generate_routers();
+}
+
+void Simulator::find_shortest_path(string sourceRouter, string destinationRouter)
+{
+	// TODO: Implement this
 }

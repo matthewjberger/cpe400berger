@@ -15,5 +15,5 @@ std::string Router::mac_address() const
 
 void Router::transmit()
 {
-	// chance of failing
+	// TODO: Implement this, add chance of failing
 }
