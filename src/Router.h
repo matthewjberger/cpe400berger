@@ -1,14 +1,16 @@
 #pragma once
 #include <map>
+#include <string>
 
 class Router
 {
 public:
-	Router();
+	explicit Router(std::string mediaAccessControlAddress);
 	~Router() = default;
 
 	// TODO: Init routing table
 
+	std::string mac_address() const;
 	void transmit();
 
 private:

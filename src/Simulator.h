@@ -1,7 +1,10 @@
 #pragma once
 #include "Graph.h"
 #include "Router.h"
+#include <memory>
 
+
+using SharedRouter = std::shared_ptr<Router>;
 
 class Simulator
 {
@@ -12,6 +15,8 @@ public:
 	void run_simulator(int numberOfNodes);
 
 private:
-	Graph<Router> network_;
+	Graph<SharedRouter> network_;
+
+	void add_router_to_graph(Router* router, AdjacencyList<SharedRouter> routerAdjacencyList);
 
 };
