@@ -1,4 +1,5 @@
 #include "Simulator.h"
+#include <queue>
 
 using namespace std;
 
@@ -11,7 +12,7 @@ void Simulator::generate_routers()
 
 	routers_.emplace(routerA->mac_address(), routerA);
 	routers_.emplace(routerB->mac_address(), routerB);
-	routers_.emplace(routerB->mac_address(), routerC);
+	routers_.emplace(routerC->mac_address(), routerC);
 
 	// Create some neighbors
 	AdjacencyList<SharedRouter> routerANeighbors;
@@ -40,7 +41,49 @@ void Simulator::run_simulator()
 	generate_routers();
 }
 
-void Simulator::find_shortest_path(string sourceRouter, string destinationRouter)
+std::map<string,int> Simulator::find_shortest_path(string sourceRouter, string destinationRouter)
 {
-	// TODO: Implement this
+
+	map<string, int> minimumDistance;
+
+	//// Set the comparator for routers
+	//auto comparator = [&minimumDistance](string left, string right)
+	//{
+	//	return minimumDistance[left] > minimumDistance[right];
+	//};
+
+	//priority_queue< string, vector<string>, function<bool(string, string)>> unoptimizedNodes(comparator);
+
+	//// Set the minimum distance from the starting node to zero
+	//minimumDistance.emplace(make_pair(sourceRouter, 0));;
+	//unoptimizedNodes.push(sourceRouter);
+
+	//// Set all initial distances to infinite
+	//for (const auto& router : routers_)
+	//{
+	//	auto address = router.second->mac_address();
+	//	if (address == sourceRouter) continue;
+	//	minimumDistance.emplace(make_pair(address, INT_MAX));
+	//	unoptimizedNodes.push(address);
+	//}
+
+
+	//while(!unoptimizedNodes.empty())
+	//{
+	//	const auto unoptimizedNodeAddress = unoptimizedNodes.top();
+	//	unoptimizedNodes.pop();
+	//	auto neighbors = network_[unoptimizedNodeAddress];
+	//	for(const auto& neighbor : neighbors)
+	//	{
+	//		const auto neighborAddress = neighbor.first->mac_address();
+	//		const auto neighborDistance = neighbor.second;
+	//		const auto alternatePath = minimumDistance[unoptimizedNodeAddress] + neighborDistance;
+	//		if(alternatePath < minimumDistance[neighborAddress])
+	//		{
+	//			minimumDistance[neighborAddress] = alternatePath;
+	//		}
+	//	}
+	//}
+
+	return minimumDistance;
 }

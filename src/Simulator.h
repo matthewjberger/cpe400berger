@@ -2,7 +2,7 @@
 #include "Graph.h"
 #include "Router.h"
 #include <memory>
-
+#include <functional>
 
 using SharedRouter = std::shared_ptr<Router>;
 
@@ -14,7 +14,7 @@ public:
 
 	void run_simulator();
 	void generate_routers();
-	void find_shortest_path(std::string sourceNode, std::string destinationNode);
+	std::map<std::string,int> find_shortest_path(std::string sourceNode, std::string destinationNode);
 
 private:
 	Graph<SharedRouter> network_;
