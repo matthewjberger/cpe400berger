@@ -1,10 +1,10 @@
-#include <iostream>
+#include "Simulator.h"
 
 using namespace std;
 
 int main()
 {
-	cout << "Hello World!" << endl;
-	cin.get();
+	Simulator networkSimulator;
+	networkSimulator.run_simulator(10);
 	return 0;
 }
