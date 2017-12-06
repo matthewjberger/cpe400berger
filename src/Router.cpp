@@ -1,16 +1,11 @@
 #include "Router.h"
 
-Router::Router(std::string mediaAccessControlAddress)
+Router::Router(const int id)
 {
-	mediaAccessControlAddress_ = mediaAccessControlAddress;
 	down_ = false;
+	id_ = id;
 
 	// TODO: Initialize routing table
-}
-
-std::string Router::mac_address() const
-{
-	return mediaAccessControlAddress_;
 }
 
 void Router::transmit()

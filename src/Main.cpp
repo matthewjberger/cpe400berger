@@ -1,11 +1,9 @@
 #include "Simulator.h"
-
 using namespace std;
 
 int main()
 {
-	Simulator networkSimulator;
-	networkSimulator.run_simulator();
-	networkSimulator.find_shortest_path("A", "C");
+	Simulator simulator(9);
+	simulator.run_simulator();
 	return 0;
 }
