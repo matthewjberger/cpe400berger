@@ -24,13 +24,16 @@ void Simulator::generate_routers()
 		routers_.push_back(new Router(i));
 	}
 
-	network_->add_edge(0, 1, 4);
-	network_->add_edge(0, 7, 8);
-	network_->add_edge(1, 2, 8);
-	network_->add_edge(1, 7, 11);
-	network_->add_edge(2, 3, 7);
-	network_->add_edge(6, 8, 6);
-	network_->add_edge(7, 8, 7);
+	Logger::instance()->log("Generating network links...");
+	// eventually this should have actually random links
+	const auto totalNodes = network_->number_of_nodes();
+	for(auto i = 0; i < network_->number_of_nodes(); i++)
+	{
+		const auto sourceNode = rand() % (totalNodes - 1);
+		const auto cost = (rand() % 10) + 1;
+		network_->add_edge(i, sourceNode, cost);
+	}
+	Logger::instance()->log("Network links successfully generated!");
 }
 
 

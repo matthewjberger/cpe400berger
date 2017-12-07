@@ -7,7 +7,7 @@ public:
 	explicit Router(int id);
 	~Router() = default;
 
-	void transmit() const;
+	void transmit(int retransmitNumber = 0) const;
 	void id();
 
 private:
