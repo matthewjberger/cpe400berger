@@ -1,21 +1,23 @@
 #include "Graph.h"
 #include <queue>
 #include <functional>
+#include "Logger.h"
 
 using namespace std;
 
 Graph::Graph(const int numberOfNodes) : numberOfNodes_(numberOfNodes)
 {
-	nodeAdjacencyLists_ = new std::list<Node>[numberOfNodes];
+	nodeAdjacencyLists_ = new list<Node>[numberOfNodes];
 }
 
-void Graph::add_edge(const int source, int destination, int weight)
+void Graph::add_edge(const int source, int destination, int weight) const
 {
-	nodeAdjacencyLists_[source].push_back(std::make_pair(destination, weight));
+	nodeAdjacencyLists_[source].push_back(make_pair(destination, weight));
 }
 
-vector<int> Graph::find_shortest_paths(int source)
+vector<int> Graph::find_shortest_paths(int source) const
 {
+	Logger::instance()->log("Reconstructing routing table...");
 	priority_queue< Node, vector <Node>, greater<Node> > minHeap;
 	// Initial distances are all infinite
 	vector<int> distances(numberOfNodes_, INT_MAX);
@@ -46,7 +48,7 @@ vector<int> Graph::find_shortest_paths(int source)
 			}
 		}
 	}
-
+	Logger::instance()->log("Routing table successfully updated!");
 	return distances;
 }
 

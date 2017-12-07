@@ -1,9 +1,13 @@
 #include "Simulator.h"
+#include <iostream>
+#include "Logger.h"
+#include <string>
 
 using namespace std;
 
 Simulator::Simulator(const int numberOfNodes)
 {
+	Logger::instance()->log("Initializing Simulation with: " + to_string(numberOfNodes) + "nodes");
 	network_ = new Graph(numberOfNodes);
 }
 
@@ -16,6 +20,7 @@ void Simulator::generate_routers()
 {
 	for(auto i = 0; i < network_->number_of_nodes(); i++)
 	{
+		Logger::instance()->log("Initializing Router Number #" + to_string(i));
 		routers_.push_back(new Router(i));
 	}
 
@@ -31,6 +36,12 @@ void Simulator::generate_routers()
 
 void Simulator::run_simulator()
 {
+	Logger::instance()->log("Simulation running...");
 	generate_routers();
 	network_->find_shortest_paths(0);
+	for(auto router : routers_)
+	{
+		router->transmit();
+	}
+	Logger::instance()->log("Simulation Complete!");
 }

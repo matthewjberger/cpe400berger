@@ -7,9 +7,7 @@ public:
 	explicit Router(int id);
 	~Router() = default;
 
-	// TODO: Init routing table
-
-	void transmit();
+	void transmit() const;
 	void id();
 
 private:
